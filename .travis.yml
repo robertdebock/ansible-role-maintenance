@@ -1,0 +1,43 @@
+---
+#
+# Ansible managed
+#
+language: python
+
+python:
+  - "3.7"
+
+services:
+  - docker
+
+env:
+  global:
+    namespace="robertdebock"
+  matrix:
+    - image="alpine" tag="latest"
+    - image="alpine" tag="edge"
+    - image="debian" tag="latest"
+    - image="debian" tag="unstable"
+    - image="centos" tag="7"
+    - image="centos" tag="latest"
+    - image="fedora" tag="30"
+    - image="fedora" tag="latest"
+    - image="fedora" tag="rawhide"
+    - image="opensuse" tag="latest"
+    - image="ubuntu" tag="latest"
+
+cache:
+  - pip
+
+install:
+  - pip install --upgrade pip
+  - pip install tox
+
+script:
+  - tox --parallel all
+
+notifications:
+  webhooks: https://galaxy.ansible.com/api/v1/notifications/
+  slack:
+    secure: "# out of `travis encrypt robertdebock:TOKEN-FROM-SLACK`"
+  email: false

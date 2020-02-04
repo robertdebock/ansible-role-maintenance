@@ -1,0 +1,55 @@
+---
+# tasks file for maintenance
+- name: cleanup apt cache
+  apt:
+    autoclean: yes
+  when:
+    - ansible_pkg_mgr == "apt"
+
+- name: cleanup dnf cache
+  command: dnf clean all
+  when:
+    - ansible_pkg_mgr == "dnf"
+  register: maintenance_cleanup_dnf
+  changed_when: "'0 files removed' not in maintenance_cleanup_dnf.stdout"
+
+- name: cleanup yum cache
+  command: yum clean all
+  args:
+    warn: no
+  when:
+    - ansible_pkg_mgr == "yum"
+  register: maintenance_cleanup_yum
+  changed_when: "'0 files removed' not in maintenance_cleanup_yum.stdout"
+
+- name: cleanup zypper cache
+  command: zypper clean --all
+  args:
+    removes: "/var/cache/zypp/solv/@System"
+  when:
+    - ansible_pkg_mgr == "zypper"
+
+- name: check journalctl
+  stat:
+    path: /usr/bin/journalctl
+  register: maintenance_journalctl
+
+- name: cleanup journalctl logs
+  command: journalctl --vacuum-time={{ maintenance_journalctl_vacuum }}
+  when:
+    - maintenance_journalctl.stat.exists | bool
+  register: maintenance_cleanup_journalctl
+  changed_when: "'freed 0B' not in maintenance_cleanup_journalctl.stderr"
+
+- name: show shit
+  debug:
+    msg: "{{ maintenance_cleanup_journalctl }}"
+
+- name: empty selected files
+  copy:
+    content: ""
+    dest: "{{ item }}"
+  loop: "{{ maintenance_files_to_empty }}"
+  when:
+    - maintenance_files_to_empty is defined
+    - maintenance_files_to_empty | length > 0
