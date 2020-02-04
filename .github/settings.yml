@@ -3,5 +3,5 @@
 # Ansible managed
 #
 repository:
-  description: Install and configure maintenance on your system.
+  description: Maintain your system by cleaning up.
   homepage: https://robertdebock.nl/

@@ -6,7 +6,7 @@ maintenance
 
 <a href="https://github.com/robertdebock/ansible-role-maintenance/actions"><img src="https://github.com/robertdebock/ansible-role-maintenance/workflows/GitHub%20Action/badge.svg"/></a>
 
-Install and configure maintenance on your system.
+Maintain your system by cleaning up.
 
 Example Playbook
 ----------------
