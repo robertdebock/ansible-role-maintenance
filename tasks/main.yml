@@ -16,11 +16,10 @@
 - name: cleanup yum cache
   command: yum clean all
   args:
+    removes: /var/cache/yum/{{ ansible_architecture }}/{{ ansible_distribution_major_verion }}/base/repomd.xml
     warn: no
   when:
     - ansible_pkg_mgr == "yum"
-  register: maintenance_cleanup_yum
-  changed_when: "'0 files removed' not in maintenance_cleanup_yum.stdout"
 
 - name: cleanup zypper cache
   command: zypper clean --all
