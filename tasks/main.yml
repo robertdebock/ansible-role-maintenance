@@ -16,7 +16,7 @@
 - name: cleanup yum cache
   command: yum clean all
   args:
-    removes: /var/cache/yum/{{ ansible_architecture }}/{{ ansible_distribution_major_verion }}/base/repomd.xml
+    removes: /var/cache/yum/{{ ansible_architecture }}/{{ ansible_distribution_major_version }}/base/repomd.xml
     warn: no
   when:
     - ansible_pkg_mgr == "yum"
