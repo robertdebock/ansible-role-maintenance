@@ -40,10 +40,6 @@
   register: maintenance_cleanup_journalctl
   changed_when: "'freed 0B' not in maintenance_cleanup_journalctl.stderr"
 
-- name: show shit
-  debug:
-    msg: "{{ maintenance_cleanup_journalctl }}"
-
 - name: empty selected files
   copy:
     content: ""
