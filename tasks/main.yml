@@ -14,10 +14,9 @@
   changed_when: "'0 files removed' not in maintenance_cleanup_dnf.stdout"
 
 - name: cleanup yum cache
-  command: yum clean all
+  command: yum clean all # noqa 303 yum module has not `clean` feature.
   args:
     removes: /var/cache/yum/{{ ansible_architecture }}/{{ ansible_distribution_major_version }}/base/repomd.xml
-    warn: no
   when:
     - ansible_pkg_mgr == "yum"
 
