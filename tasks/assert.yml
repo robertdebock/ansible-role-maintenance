@@ -1,0 +1,22 @@
+---
+- name: test if maintenance_journalctl_vacuum is set correctly
+  assert:
+    that:
+      - maintenance_journalctl_vacuum is defined
+      - maintenance_journalctl_vacuum | length > 0
+
+- name: test if maintenance_files_to_empty is set correctly
+  assert:
+    that:
+      - maintenance_files_to_empty | length > 0
+  when:
+    - maintenance_files_to_empty is defined
+
+- name: test if item in maintenance_files_to_empty is set correctly
+  assert:
+    that:
+      - item is defined
+      - item | length > 0
+  loop: "{{ maintenance_files_to_empty }}"
+  when:
+    - maintenance_files_to_empty is defined
