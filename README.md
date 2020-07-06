@@ -61,6 +61,7 @@ These variables are set in `defaults/main.yml`:
 ```yaml
 ---
 # defaults file for maintenance
+
 maintenance_journalctl_vacuum: 10d
 
 # A list of files that needs to be emptied.
