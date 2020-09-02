@@ -12,3 +12,4 @@
       copy:
         dest: /tmp/some_file.txt
         content: "Some content"
+        mode: "0644"

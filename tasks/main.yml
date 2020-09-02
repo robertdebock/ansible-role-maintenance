@@ -46,7 +46,7 @@
   copy:
     content: ""
     dest: "{{ item }}"
-    mode: preserve
+    mode: "0644"
   loop: "{{ maintenance_files_to_empty }}"
   when:
     - maintenance_files_to_empty is defined
