@@ -38,15 +38,16 @@ The machine may need to be prepared using `molecule/resources/prepare.yml`:
       copy:
         dest: /tmp/some_file.txt
         content: "Some content"
+        mode: "0644"
 ```
 
-For verification `molecule/resources/verify.yml` run after the role has been applied.
+For verification `molecule/resources/verify.yml` runs after the role has been applied.
 ```yaml
 ---
 - name: Verify
   hosts: all
   become: yes
-  gather_facts: yes
+  gather_facts: no
 
   tasks:
     - name: check if connection still works
