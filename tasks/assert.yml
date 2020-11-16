@@ -3,13 +3,11 @@
   assert:
     that:
       - maintenance_journalctl_vacuum is defined
-      - maintenance_journalctl_vacuum | length > 0
     quiet: yes
 
 - name: test if maintenance_files_to_empty is set correctly
   assert:
     that:
-      - maintenance_files_to_empty | length > 0
     quiet: yes
   when:
     - maintenance_files_to_empty is defined
@@ -18,7 +16,6 @@
   assert:
     that:
       - item is defined
-      - item | length > 0
     quiet: yes
   loop: "{{ maintenance_files_to_empty }}"
   when:
