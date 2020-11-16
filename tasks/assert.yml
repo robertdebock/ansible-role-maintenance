@@ -5,13 +5,6 @@
       - maintenance_journalctl_vacuum is defined
     quiet: yes
 
-- name: test if maintenance_files_to_empty is set correctly
-  assert:
-    that:
-    quiet: yes
-  when:
-    - maintenance_files_to_empty is defined
-
 - name: test if item in maintenance_files_to_empty is set correctly
   assert:
     that:
