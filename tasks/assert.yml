@@ -1,4 +1,5 @@
 ---
+
 - name: test if maintenance_journalctl_vacuum is set correctly
   assert:
     that:
