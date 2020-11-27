@@ -4,12 +4,14 @@
   assert:
     that:
       - maintenance_journalctl_vacuum is defined
+      - maintenance_journalctl_vacuum is string
     quiet: yes
 
 - name: test if item in maintenance_files_to_empty is set correctly
   assert:
     that:
       - item is defined
+      - item is string
     quiet: yes
   loop: "{{ maintenance_files_to_empty }}"
   when:
