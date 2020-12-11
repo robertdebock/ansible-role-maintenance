@@ -16,7 +16,8 @@
   when:
     - ansible_pkg_mgr == "dnf"
   register: maintenance_cleanup_dnf
-  changed_when: "'0 files removed' not in maintenance_cleanup_dnf.stdout"
+  changed_when:
+    - "'0 files removed' not in maintenance_cleanup_dnf.stdout"
 
 - name: cleanup yum cache
   command: yum clean all  # noqa 303 yum module has not `clean` feature.
@@ -42,7 +43,8 @@
   when:
     - maintenance_journalctl.stat.exists | bool
   register: maintenance_cleanup_journalctl
-  changed_when: "'freed 0B' not in maintenance_cleanup_journalctl.stderr"
+  changed_when:
+    - "'freed 0B' not in maintenance_cleanup_journalctl.stderr"
 
 - name: empty selected files
   copy:
