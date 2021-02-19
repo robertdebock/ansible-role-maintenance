@@ -7,7 +7,7 @@
   delegate_to: localhost
 
 - name: cleanup apt cache
-  apt:
+  ansible.builtin.apt:
     autoclean: yes
   when:
     - ansible_pkg_mgr == "apt"
@@ -35,7 +35,7 @@
     - ansible_pkg_mgr == "zypper"
 
 - name: check journalctl
-  stat:
+  ansible.builtin.stat:
     path: /usr/bin/journalctl
   register: maintenance_journalctl
 
@@ -48,7 +48,7 @@
     - "'freed 0B' not in maintenance_cleanup_journalctl.stderr"
 
 - name: empty selected files
-  copy:
+  ansible.builtin.copy:
     content: ""
     dest: "{{ item }}"
     mode: "0644"
