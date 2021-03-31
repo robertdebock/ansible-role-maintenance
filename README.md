@@ -35,7 +35,7 @@ The machine needs to be prepared in CI this is done using `molecule/resources/pr
 
   tasks:
     - name: create a file
-      copy:
+      ansible.builtin.copy:
         dest: /tmp/some_file.txt
         content: "Some content"
         mode: "0644"
