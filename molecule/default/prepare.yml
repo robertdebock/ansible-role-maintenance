@@ -9,7 +9,7 @@
 
   tasks:
     - name: create a file
-      copy:
+      ansible.builtin.copy:
         dest: /tmp/some_file.txt
         content: "Some content"
         mode: "0644"
