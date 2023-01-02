@@ -23,7 +23,7 @@
 
 - name: Cleanup yum cache
   ansible.builtin.command:
-    cmd: yum clean all  # noqa 303 yum module has not `clean` feature.
+    cmd: yum clean all  # noqa command-instead-of-module yum module has not `clean` feature.
     removes: /var/cache/yum/{{ ansible_architecture }}/{{ ansible_distribution_major_version }}/base/repomd.xml
   when:
     - ansible_pkg_mgr == "yum"
