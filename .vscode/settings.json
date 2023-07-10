@@ -1,5 +1,0 @@
-{
-  "yaml.schemas": {
-    "https://raw.githubusercontent.com/ansible-community/schemas/main/f/ansible.json#/$defs/tasks": "file:///Users/robertdb/Documents/github.com/robertdebock/ansible-role-maintenance/tasks/main.yml"
-  }
-}
