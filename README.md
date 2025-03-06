@@ -18,7 +18,7 @@ This example is taken from [`molecule/default/converge.yml`](https://github.com/
   gather_facts: true
 
   roles:
-    - role: robertdebock.maintenance
+    - role: ansible-role-maintenance
       maintenance_files_to_empty:
         - /tmp/some_file.txt
 ```
