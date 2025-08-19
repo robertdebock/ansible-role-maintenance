@@ -21,6 +21,7 @@
   register: maintenance_cleanup_dnf
   changed_when:
     - "'0 files removed' not in maintenance_cleanup_dnf.stdout"
+    - "'Removed 0' not in maintenance_cleanup_dnf.stdout"
 
 - name: Cleanup yum cache
   ansible.builtin.command:
