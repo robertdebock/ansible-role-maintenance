@@ -5,4 +5,4 @@
 repository:
   description: Maintain your system by cleaning up.
   homepage: https://robertdebock.nl/
-  topics: maintenance, security, system, ansible, molecule, tox, playbook
+  topics: maintenance, security, system, ansible, molecule, playbook
