@@ -11,13 +11,13 @@
   ansible.builtin.apt:
     autoclean: true
   when:
-    - ansible_pkg_mgr == "apt"
+    - ansible_facts['pkg_mgr'] == "apt"
 
 - name: Cleanup dnf cache
   ansible.builtin.command:
     cmd: dnf clean all
   when:
-    - ansible_pkg_mgr in [ "dnf", "dnf5" ]
+    - ansible_facts['pkg_mgr'] in [ "dnf", "dnf5" ]
   register: maintenance_cleanup_dnf
   changed_when:
     - "'0 files removed' not in maintenance_cleanup_dnf.stdout"
@@ -26,16 +26,16 @@
 - name: Cleanup yum cache
   ansible.builtin.command:
     cmd: yum clean all  # noqa command-instead-of-module yum module has not `clean` feature.
-    removes: /var/cache/yum/{{ ansible_architecture }}/{{ ansible_distribution_major_version }}/base/repomd.xml
+    removes: /var/cache/yum/{{ ansible_facts['architecture'] }}/{{ ansible_facts['distribution_major_version'] }}/base/repomd.xml
   when:
-    - ansible_pkg_mgr == "yum"
+    - ansible_facts['pkg_mgr'] == "yum"
 
 - name: Cleanup zypper cache
   ansible.builtin.command:
     cmd: zypper clean --all
     removes: "/var/cache/zypp/solv/@System"
   when:
-    - ansible_pkg_mgr == "zypper"
+    - ansible_facts['pkg_mgr'] == "zypper"
 
 - name: Check /usr/bin/journalctl
   ansible.builtin.stat:
